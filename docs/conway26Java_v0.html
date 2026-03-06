@@ -41,31 +41,31 @@ R2  L’utente umano deve poter:
     Per Cell dopo aver parlato con il committente formalizzo il seguente modello: 
 
     public interface ICell {
-	    void setStatus(boolean v); //la cella e' un ente e puo avere la capacita di modificare il proprio stato interno in base a un valore booleano che puo essere true o false
-	    boolean isAlive(); //la cella puo' essere viva o morta
-	    void switchCellState(); //se e' viva una cella puo' diventare morta e viceversa
+	    void setStatus(boolean v); //primitiva: la cella e' un ente e puo avere la capacita di modificare il proprio stato interno in base a un valore booleano che puo essere true o false
+	    boolean isAlive(); //primitiva: la cella puo' essere viva o morta
+	    void switchCellState(); //non primitiva: se e' viva una cella puo' diventare morta e viceversa
     }
 
     Per Grid dopo aver parlato con il committente formalizzo il seguente modello:
 
     public interface IGrid {
-	    public int getRowsNum(); //l'entita griglia e' composta da tot righe
-	    public int getColsNum(); //l'entita griglia e' composta da tot colonne
-	    public void setCellValue(int x, int y, boolean state); //la griglia e' composta da entita 'celle che hanno un proprio stato (vero o falso) che puo' essere modificato
-	    public ICell getCell(int x, int y); //la griglia e' composta da entita' celle
-	    public boolean getCellValue(int x, int y); //la griglia e' composta da entita' celle che possono essere vive o false
-	    public void reset(); //la griglia puo' essere riportata allo stato iniziale
+	    public int getRowsNum(); //primitiva: l'entita griglia e' composta da tot righe
+	    public int getColsNum(); //primitiva: l'entita griglia e' composta da tot colonne
+	    public void setCellValue(int x, int y, boolean state); //non primitiva: la griglia e' composta da entita 'celle che hanno un proprio stato (vero o falso) che puo' essere modificato
+	    public ICell getCell(int x, int y); //primitiva: la griglia e' composta da entita' celle
+	    public boolean getCellValue(int x, int y); //non primitiva: la griglia e' composta da entita' celle che possono essere vive o false
+	    public void reset(); //non primitiva: la griglia puo' essere riportata allo stato iniziale
     }
 
     Per Life dopo aver parlato con il committente formalizzo il seguente modello: 
 
     public interface LifeInterface {
-        void nextGeneration(); //Calcola l'evoluzione dello stato alla generazione successiva
-        boolean isAlive(int row, int col); //Restituisce lo stato di una cella specifica
-        void setCell(int row, int col, boolean alive); //Imposta lo stato di una cella
-        ICell getCell(int x, int y); //Restituisce la Cella
-        Grid getGrid(); //Restituisce la grid
-        void resetGrids(); //Restituisce una rappresentazione grafica testuale della griglia
+        void nextGeneration(); //primitiva: Calcola l'evoluzione dello stato alla generazione successiva
+        boolean isAlive(int row, int col); //non primitiva: Restituisce lo stato di una cella specifica
+        void setCell(int row, int col, boolean alive); //non primitiva: Imposta lo stato di una cella
+        ICell getCell(int x, int y); //non primitiva: Restituisce la Cella
+        IGrid getGrid(); //primitiva: Restituisce la grid
+        void resetGrids(); //non primitiva: Restituisce una rappresentazione grafica testuale della griglia
     }
  </pre
 			>
