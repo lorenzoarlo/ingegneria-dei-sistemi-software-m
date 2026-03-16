@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="css/mystyle.css">
+    <link rel="stylesheet" type="text/css" href="/docs/css/style.css">
 </head>
 <title>conway26GuiHtml_v0</title>
 </head>
@@ -42,28 +42,10 @@
             </li>
         </ul>
         <h2>Requirement analysis</h2>
-        La cella ha uno stato (viva o morta) ottenibile e impostabile con gli opportuni accessori <a
-            href="https://github.com/lorenzoarlo/ingegneria-dei-sistemi-software-m/blob/main/ConwayLife/Sprint1/conway26Java/src/main/java/conway/domain/ICell.java">interfaccia</a>
-        La griglia è un insieme di celle, con dimensioni specificabili, e con accessori per ottenere e impostare lo
-        stato di ogni cella: <a
-            href="https://github.com/lorenzoarlo/ingegneria-dei-sistemi-software-m/blob/main/ConwayLife/Sprint1/conway26Java/src/main/java/conway/domain/IGrid.java">interfaccia</a>
-        Life è un sistema che si occupa di far evolvere la griglia secondo le regole del gioco: <a
-            href="https://github.com/lorenzoarlo/ingegneria-dei-sistemi-software-m/blob/main/ConwayLife/Sprint1/conway26Java/src/main/java/conway/domain/LifeInterface.java">interfaccia</a>
-
+        <pre></pre>
         <h2>Problem analysis</h2>
 
-        <img src="./img/UML.jpg" alt="Diagramma uml del progetto">
-
-        <h2>Test plans</h2>
-        La cella deve essere inizialmente morta, lo stato morto è rappresentato da un booleano <code>false</code>, lo
-        stato vivo è rappresentato da un booleano <code>true</code>: <a
-            href="https://github.com/lorenzoarlo/ingegneria-dei-sistemi-software-m/blob/main/ConwayLife/Sprint1/conway26Java/src/main/java/test/CellTest.java">test</a>
-        La griglia deve restiture la cella alla posizione specificata, se essa non è compresa in <code>[0, dim)</code>
-        restituisce un'eccezione: <a
-            href="https://github.com/lorenzoarlo/ingegneria-dei-sistemi-software-m/blob/main/ConwayLife/Sprint1/conway26Java/src/main/java/test/GridTest.java">test</a>
-        Life deve restituire la nuova griglia dopo l'evoluzione secondo le regole del gioco: <a
-            href="https://github.com/lorenzoarlo/ingegneria-dei-sistemi-software-m/blob/main/ConwayLife/Sprint1/conway26Java/src/main/java/test/LifeTest.java">test</a>
-
+        <pre></pre>
         <h2>Project</h2>
         <pre></pre>
 
@@ -71,8 +53,16 @@
         <pre></pre>
 
         <h2>Deployment</h2>
-        Il deployment è effettuato creando un'immagine docker attraverso il seguente file: <a href="https://github.com/lorenzoarlo/ingegneria-dei-sistemi-software-m/blob/main/ConwayLife/Sprint3/conway26GuiHtml/Dockerfile">Dockerfile</a>
-        Successivamente l'immagine viene "eseguita" con il compose file in un network esterno: <a href="https://github.com/lorenzoarlo/ingegneria-dei-sistemi-software-m/blob/main/ConwayLife/Sprint3/conway26GuiHtml/compose.yaml">compose.yaml</a>
+        <p>
+            Il deployment è effettuato creando un'immagine docker attraverso il file
+            <iframe frameborder="0" scrolling="no" style="width:100%; height:207px;" allow="clipboard-write"
+                src="https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2Florenzoarlo%2Fingegneria-dei-sistemi-software-m%2Fblob%2Fmain%2FConwayLife%2FSprint3%2Fconway26GuiHtml%2FDockerfile&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on&maxHeight=150"></iframe>
+        </p>
+        <p>
+            Successivamente l'immagine viene "eseguita" con il compose file
+        </p>
+        <iframe frameborder="0" scrolling="no" style="width:100%; height:207px;" allow="clipboard-write"
+            src="https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2Florenzoarlo%2Fingegneria-dei-sistemi-software-m%2Fblob%2Fmain%2FConwayLife%2FSprint3%2Fconway26GuiHtml%2Fcompose.yaml&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on&maxHeight=150"></iframe>
 
         <h2>Maintenance</h2>
         <pre></pre>

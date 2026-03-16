@@ -15,12 +15,12 @@ wscontrol.js
 				
  function  initWS(){
  /*1*/	  
-	  if( window.location.host =="" ) socketToGui = new WebSocket("ws://localhost:8080/chat");
-	  else 	socketToGui = new WebSocket("ws://"+window.location.host+"/chat");
+	  if( window.location.host =="" ) socketToGui = new WebSocket("ws://localhost:8080/eval");
+	  else 	socketToGui = new WebSocket("ws://"+window.location.host+"/eval");
 
  /*2*/socketToGui.onopen = () => {
      //console.log("initWS | Connesso a eval");
-	 addItem("initWS | Connesso a chat");
+	 addItem("initWS | Connesso a eval");
 	 opened = true;
 	 sendCmdToServer("ready" );
      }
