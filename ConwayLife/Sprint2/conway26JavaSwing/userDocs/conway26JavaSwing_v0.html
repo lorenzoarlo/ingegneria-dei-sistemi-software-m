@@ -15,54 +15,47 @@
     <div class="body">
 
         <h2>Introduction</h2>
-        Realizzazione in Java del <a
-            href='https://anatali.github.io/issLab2026/_static/docs/Protobook.pdf#chapter.6'>GAME OF LIFE DI CONWAY</a>
-
+        <p>
+            Realizzazione di <a href='https://anatali.github.io/issLab2026/_static/docs/Protobook.pdf#chapter.6'>GAME OF
+                LIFE DI
+                CONWAY</a> con una interfaccia grafica di interazione con l'utente.
+        </p>
         <h2>Requirements</h2>
 
-        Realizzare una versione in Java del gioco Life di Conway, come gioco zero-player.
-        Il gioco consiste nell’introdurre una Griglia di Celle il cui stato (cella ‘viva’ o cella ‘morta’)
-        evolve come stabilito dallle regole di ConwayLife
+        <ol>
+            <li>
+                Realizzare una versione in Java del gioco Life di Conway, come gioco zero-player.
+                Il gioco consiste nell'introdurre una Griglia di Celle il cui stato (cella 'viva' o cella 'morta')
+                evolve come stabilito dallle regole di ConwayLife
+            </li>
+            <li>
+                L'utente umano deve poter:
+                <ul>
+                    <li>
+                        specificare la configurazione iniziale della griglia del gioco
+                    </li>
+                    <li>
+                        vedere l'evoluzione del gioco in forma opportuna
+                        (si veda <a
+                            href='https://anatali.github.io/issLab2026/_static/docs/Protobook.pdf#section.6.3'>Problema
+                            della vista del gioco</a> )
+                    </li>
+                    <li>
+                        fermare e far ripartire l'evoluzione del gioco
+                    </li>
+                    <li>
+                        pulire (a gioco fermo) la configurazione della griglia del gioco
+                    </li>
+                </ul>
+            </li>
+        </ol>
 
-        L'utente umano deve poter:
-        <ul>
-            <li>
-                specificare la configurazione iniziale della griglia del gioco
-            </li>
-            <li>
-                vedere l’evoluzione del gioco in forma opportuna
-                (si veda <a href='https://anatali.github.io/issLab2026/_static/docs/Protobook.pdf#section.6.3'>Problema
-                    della vista del gioco</a> )
-            </li>
-            <li>
-                fermare e far ripartire l’evoluzione del gioco
-            </li>
-            <li>
-                pulire (a gioco fermo) la configurazione della griglia del gioco
-            </li>
-        </ul>
+
+
         <h2>Requirement analysis</h2>
-        La cella ha uno stato (viva o morta) ottenibile e impostabile con gli opportuni accessori <a
-            href="https://github.com/lorenzoarlo/ingegneria-dei-sistemi-software-m/blob/main/ConwayLife/Sprint1/conway26Java/src/main/java/conway/domain/ICell.java">interfaccia</a>
-        La griglia è un insieme di celle, con dimensioni specificabili, e con accessori per ottenere e impostare lo
-        stato di ogni cella: <a
-            href="https://github.com/lorenzoarlo/ingegneria-dei-sistemi-software-m/blob/main/ConwayLife/Sprint1/conway26Java/src/main/java/conway/domain/IGrid.java">interfaccia</a>
-        Life è un sistema che si occupa di far evolvere la griglia secondo le regole del gioco: <a
-            href="https://github.com/lorenzoarlo/ingegneria-dei-sistemi-software-m/blob/main/ConwayLife/Sprint1/conway26Java/src/main/java/conway/domain/LifeInterface.java">interfaccia</a>
-
+        <pre></pre>
         <h2>Problem analysis</h2>
-
-        <img src="./img/UML.jpg" alt="Diagramma uml del progetto">
-
         <h2>Test plans</h2>
-        La cella deve essere inizialmente morta, lo stato morto è rappresentato da un booleano <code>false</code>, lo
-        stato vivo è rappresentato da un booleano <code>true</code>: <a
-            href="https://github.com/lorenzoarlo/ingegneria-dei-sistemi-software-m/blob/main/ConwayLife/Sprint1/conway26Java/src/main/java/test/CellTest.java">test</a>
-        La griglia deve restiture la cella alla posizione specificata, se essa non è compresa in <code>[0, dim)</code>
-        restituisce un'eccezione: <a
-            href="https://github.com/lorenzoarlo/ingegneria-dei-sistemi-software-m/blob/main/ConwayLife/Sprint1/conway26Java/src/main/java/test/GridTest.java">test</a>
-        Life deve restituire la nuova griglia dopo l'evoluzione secondo le regole del gioco: <a
-            href="https://github.com/lorenzoarlo/ingegneria-dei-sistemi-software-m/blob/main/ConwayLife/Sprint1/conway26Java/src/main/java/test/LifeTest.java">test</a>
 
         <h2>Project</h2>
         <pre></pre>
@@ -72,7 +65,6 @@
 
         <h2>Deployment</h2>
         <pre></pre>
-
         <h2>Maintenance</h2>
         <pre></pre>
     </div>
