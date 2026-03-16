@@ -7,5 +7,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
+	<classpathentry kind="lib" path="/Users/lorenzoarlo/Documents/GitHub/ingegneria-dei-sistemi-software-m/unibolibs/2p301.jar"/>
+	<classpathentry kind="lib" path="/Users/lorenzoarlo/Documents/GitHub/ingegneria-dei-sistemi-software-m/unibolibs/unibo.basicomm23-1.0.jar"/>
+	<classpathentry kind="lib" path="/Users/lorenzoarlo/Documents/GitHub/ingegneria-dei-sistemi-software-m/unibolibs/uniboInterfaces.jar"/>
 	<classpathentry kind="output" path="bin/default"/>
 </classpath>

@@ -1,28 +1,38 @@
 package main.java.conway.domain;
 
+/**
+ * Interfaccia che definisce il motore logico e l'evoluzione del gioco.
+ */
 public interface LifeInterface {
-	/** Calcola l'evoluzione dello stato alla generazione successiva */
+
+    /**
+     * Primitiva: calcola l'evoluzione dello stato complessivo alla generazione successiva.
+     */
     void nextGeneration();
 
-    /** Restituisce lo stato di una cella specifica */
+    /**
+     * Non primitiva: restituisce lo stato booleano (vivo o morto) di una cella specifica.
+     */
     boolean isAlive(int row, int col);
 
-    /** Imposta lo stato di una cella */
+    /**
+     * Non primitiva: imposta lo stato di una cella agendo sulla struttura sottostante.
+     */
     void setCell(int row, int col, boolean alive);
 
-    /** Restituisce il numero di righe e colonne */
-//    int getRows();
-//    int getCols();
-    
-    /** Restituisce la Cella */
+    /**
+     * Non primitiva: restituisce l'oggetto Cella corrispondente alle coordinate specificate.
+     */
     ICell getCell(int x, int y);
-    
-    /** Restituisce la grid */
-    Grid getGrid();
-    
-    /** pulisce */
+
+    /**
+     * Primitiva: restituisce l'entità griglia associata alla logica di gioco.
+     */
+    IGrid getGrid();
+
+    /**
+     * Non primitiva: riporta le griglie allo stato iniziale (o fornisce una rappresentazione 
+     * di reset del sistema).
+     */
     void resetGrids();
-    
-    /** Restituisce una rappresentazione grafica testuale della grglia*/
-    //public String gridRep( );
 }

@@ -4,17 +4,25 @@ public class Cell implements ICell {
 	public Cell() {
 		this(false);
 	}
-	
+
 	public Cell(boolean value) {
 		alive = value;
 	}
-	
+
 	@Override
-	public void setStatus(boolean status) { alive = status; }
+	public void setStatus(boolean status) {
+		alive = status;
+	}
+
 	@Override
-	public boolean isAlive() { return alive; }
+	public boolean isAlive() {
+		return alive;
+	}
+
 	@Override
-	public void switchCellState() { alive = !alive; }
-	
+	public void switchCellState() {
+		alive = !alive;
+	}
+
 	private boolean alive;
 }
