@@ -19,34 +19,82 @@
             href='https://anatali.github.io/issLab2026/_static/docs/Protobook.pdf#chapter.6'>GAME OF LIFE DI CONWAY</a>
 
         <h2>Requirements</h2>
-        <p>
-            Realizzare una versione in Java del gioco Life di Conway, come gioco zero-player.
-            Il gioco consiste nell’introdurre una Griglia di Celle il cui stato (cella ‘viva’ o cella ‘morta’)
-            evolve come stabilito dallle regole di ConwayLife
-            L'utente umano deve poter:
-        <ul>
+
+        <ol>
             <li>
-                specificare la configurazione iniziale della griglia del gioco
+                Realizzare una versione in Java del gioco Life di Conway, come gioco zero-player.
+                Il gioco consiste nell'introdurre una Griglia di Celle il cui stato (cella 'viva' o cella 'morta')
+                evolve come stabilito dallle regole di ConwayLife
             </li>
             <li>
-                vedere l’evoluzione del gioco in forma opportuna
-                (si veda <a href='https://anatali.github.io/issLab2026/_static/docs/Protobook.pdf#section.6.3'>Problema
-                    della vista del gioco</a> )
+                L'utente umano deve poter:
+                <ul>
+                    <li>
+                        specificare la configurazione iniziale della griglia del gioco
+                    </li>
+                    <li>
+                        vedere l'evoluzione del gioco in forma opportuna
+                        (si veda <a
+                            href='https://anatali.github.io/issLab2026/_static/docs/Protobook.pdf#section.6.3'>Problema
+                            della vista del gioco</a> )
+                    </li>
+                    <li>
+                        fermare e far ripartire l'evoluzione del gioco
+                    </li>
+                    <li>
+                        pulire (a gioco fermo) la configurazione della griglia del gioco
+                    </li>
+                </ul>
             </li>
-            <li>
-                fermare e far ripartire l’evoluzione del gioco
-            </li>
-            <li>
-                pulire (a gioco fermo) la configurazione della griglia del gioco
-            </li>
-        </ul>
-        </p>
+        </ol>
+
+
 
         <h2>Requirement analysis</h2>
-        <pre></pre>
+        <p>
+            La cella ha uno stato (viva o morta) ottenibile e impostabile con gli opportuni accessori
+        </p>
+        <iframe frameborder="0" scrolling="no" style="width:100%; height:200px;" allow="clipboard-write"
+            src="https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2Florenzoarlo%2Fingegneria-dei-sistemi-software-m%2Fblob%2Fmain%2FConwayLife%2FSprint1%2Fconway26Java%2Fsrc%2Fmain%2Fjava%2Fconway%2Fdomain%2FICell.java&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on&maxHeight=150"></iframe>
+        <p>
+            La griglia è un insieme di celle, con dimensioni specificabili, e con accessori per ottenere e impostare lo
+            stato di ogni cella:
+        </p>
+        <iframe frameborder="0" scrolling="no" style="width:100%; height:200px;" allow="clipboard-write"
+            src="https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2Florenzoarlo%2Fingegneria-dei-sistemi-software-m%2Fblob%2Fmain%2FConwayLife%2FSprint1%2Fconway26Java%2Fsrc%2Fmain%2Fjava%2Fconway%2Fdomain%2FIGrid.java&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on&maxHeight=150"></iframe>
+        <p>
+            Life è un sistema che si occupa di far evolvere la griglia secondo le regole del gioco:
+        </p>
+        <iframe frameborder="0" scrolling="no" style="width:100%; height:200px;" allow="clipboard-write"
+            src="https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2Florenzoarlo%2Fingegneria-dei-sistemi-software-m%2Fblob%2Fmain%2FConwayLife%2FSprint1%2Fconway26Java%2Fsrc%2Fmain%2Fjava%2Fconway%2Fdomain%2FLifeInterface.java&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on&maxHeight=150"></iframe>
+
         <h2>Problem analysis</h2>
 
-        <pre></pre>
+        <div class="center">
+            <img src="./img/UML.jpg" width="60%" alt="Diagramma uml del progetto">
+        </div>
+        <h2>Test plans</h2>
+        <p>
+            La cella deve essere inizialmente morta, lo stato morto è rappresentato da un booleano <code>false</code>,
+            lo
+            stato vivo è rappresentato da un booleano <code>true</code>:
+
+        </p>
+        <iframe frameborder="0" scrolling="no" style="width:100%; height:207px;" allow="clipboard-write"
+            src="https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2Florenzoarlo%2Fingegneria-dei-sistemi-software-m%2Fblob%2Fmain%2FConwayLife%2FSprint1%2Fconway26Java%2Fsrc%2Fmain%2Fjava%2Ftest%2FCellTest.java&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on&maxHeight=150"></iframe>
+
+        <p>
+            La griglia deve restiture la cella alla posizione specificata, se essa non è compresa in
+            <code>[0, dim)</code>
+            restituisce un'eccezione:
+        </p>
+        <iframe frameborder="0" scrolling="no" style="width:100%; height:207px;" allow="clipboard-write"
+            src="https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2Florenzoarlo%2Fingegneria-dei-sistemi-software-m%2Fblob%2Fmain%2FConwayLife%2FSprint1%2Fconway26Java%2Fsrc%2Fmain%2Fjava%2Ftest%2FGridTest.java&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on&maxHeight=150"></iframe>
+        <p>
+            Life deve restituire la nuova griglia dopo l'evoluzione secondo le regole del gioco:
+        </p>
+        <iframe frameborder="0" scrolling="no" style="width:100%; height:207px;" allow="clipboard-write"
+            src="https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2Florenzoarlo%2Fingegneria-dei-sistemi-software-m%2Fblob%2Fmain%2FConwayLife%2FSprint1%2Fconway26Java%2Fsrc%2Fmain%2Fjava%2Ftest%2FLifeTest.java&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on&maxHeight=150"></iframe>
         <h2>Project</h2>
         <pre></pre>
 
