@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="/ingegneria-dei-sistemi-software-m/docs/css/style.css">
+</head>
+<title>sistemasjavalin</title>
+</head>
+
+<body>
+    <div id="top">
+        <h1>SistemaSJavalin (da funzione a servizio <code>eval</code>)</h1>
+    </div>
+
+    <div class="body">
+
+        <h2>Introduction</h2>
+
+        Realizzazione (<em>Progetto SistemaSJavalin</em> ) di un servizio in Java che fa il calcolo dei valori di una
+        espressione matematica.
+
+        <h2>Requirements</h2>
+        <ul>
+            <li>realizzare un semplicissimo servizio in Java che calcola i valori di una data espressione matematica
+                <div class="center">
+                    <img src="./img/funzione.png" width="60%" alt="Funzione da realizzare">
+                </div>
+            </li>
+            <li>
+                il servizio deve essere raggiungibile sia via WebSocket che via HTTP/1 e HTTP/2.
+            </li>
+            <li>
+                l'interazione deve avvenire tramite una pagina html che permetta di indicare la x per cui si vuole
+                valutare la funzione e la modalità di interazione (WebSocket, Get o Post)
+            </li>
+            <li>
+                il deployment dell'applicazione avviene mediante Docker
+            </li>
+        </ul>
+
+
+
+
+        <h2>Requirement analysis</h2>
+        <p>
+        <ul>
+            <li>
+                La funzione da realizzare è <code>eval(x) = sin(x)+cos(sqrt(3)*x)</code>, che prende in input un numero
+                reale e restituisce un numero reale.
+            </li>
+        </ul>
+        </p>
+
+        <h2>Problem analysis</h2>
+        <p>
+            La struttura che si vuole realizzare è la seguente
+        <div class="center">
+            <img src="./img/sistema-sjavalinbetter.png" width="60%" alt="Architettura SistemaSJavalinBetter">
+        </div>
+        Si evidenzia una struttura a livelli:
+        <ul>
+            <li>
+                <b>Livello di Dominio</b>: La funzione <code>eval</code> è il layer che definisce la business logic
+                del sistema
+            </li>
+            <li>
+                <b>Livello Infrastruttura</b>: qui opera Javalin, con l'obiettivo di gestire i protocolli e di prelevare
+                dai messaggi le informazioni rilevanti per il domain-layer.
+            </li>
+            <li>
+                <b>Livello di Adattamento</b>: livello intermedio che trasforma i dati di basso livello forniti dalla
+                infrastruttura nei dati richiesti dalla applicazione
+            </li>
+        </ul>
+        </p>
+
+        <h2>Test plans</h2>
+        <pre></pre>
+        <h2>Project</h2>
+        <p>
+            Per realizzare il servizio si utilizzerà il framework Javalin, che permette di realizzare servizi WebSocket
+            e HTTP in modo semplice.
+            Le due funzionalità sono comunque molto diverse:
+        <ul>
+            <li>
+                <em>app.ws</em> stabilisce una <b>relazione</b> tra client e server che rimane attiva fino a quando il
+                client chiude la connessione
+            </li>
+            <li>
+                <em>app.post</em> stabilisce una transazione che termina quando il server invia il risultato
+            </li>
+        </ul>
+        Le classi di supporto sono:
+        <ul>
+            <li>
+                <em>io.javalin.websocket.WebMessageContext</em> per la gestione di messaggi inviati
+                su websocket.
+            </li>
+            <li>
+                <em>io.javalin.http.Context</em> per le rotte HTTP
+            </li>
+        </ul>
+        </p>
+
+        <h2>Testing</h2>
+        <pre></pre>
+
+        <h2>Deployment</h2>
+        <p>
+            Il deployment avviene mediante Docker. Il docker compose utilizzato è il seguente
+        </p>
+        <iframe frameborder="0" scrolling="no" style="width:100%; height:200px;" allow="clipboard-write"
+            src="https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2Florenzoarlo%2Fingegneria-dei-sistemi-software-m%2Fblob%2Fmain%2FSistemaSJavalin%2FSprint1%2FSistemaSJavalin%2FuserDocs%sistemasjavalin.html&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on&maxHeight=150"></iframe>
+
+        <h2>Maintenance</h2>
+        <pre></pre>
+    </div>
+</body>
+
+</html>
