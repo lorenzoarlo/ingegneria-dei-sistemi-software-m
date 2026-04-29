@@ -1,0 +1,54 @@
+System Q 
+/*
+ * sistemas : un servizio che valuta il valore di una funzione
+ * 
+ */
+Dispatch eval : arg(V)
+
+Context ctxsistemas ip [ host= "localhost" port= 8010 ]
+QActor sistemas context ctxsistemas {
+	[# 
+		fun eval(x: Double): String {
+			val R = 3*x
+			return ""+R
+		}
+		
+	#]
+	State s0 initial {
+		println("Hello world")
+		[#
+			val V = eval(2.0)
+		#]
+		println( "result=$V") color yellow
+		println("now I'm waiting for a dispatch")
+	}
+	Transition t0 
+		whenMsg eval -> handleEval
+
+	State handleEval {
+		printCurrentMessage color green
+		println("$name |  msg = $currentMsg") color magenta
+		
+		onMsg(eval : arg(X)) {
+			[#
+				val VasString = payloadArg(0)
+				val V = VasString.toDouble()
+			#]
+			println("$name | evaluate $V") color green
+			[# val R = eval(V) #]
+			println("$name | result=$R") color green
+		}
+	}
+	
+}
+
+	/*
+* Versione di sistemas come servizio
+*/
+	
+QActor callermock context ctxsistemas {
+	State s0 initial {
+		[# val V = 2.0 #]
+		forward sistemas -m eval : arg($V)
+	}
+}

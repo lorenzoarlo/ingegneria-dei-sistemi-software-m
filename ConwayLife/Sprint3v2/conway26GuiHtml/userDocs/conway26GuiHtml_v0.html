@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="/ingegneria-dei-sistemi-software-m/docs/css/style.css">
+</head>
+<title>conway26GuiHtml_v0</title>
+</head>
+
+<body>
+    <div id="top">
+        <h1>ConwayLife Sprint3</h1>
+    </div>
+
+    <div class="body">
+
+        <h2>Introduction</h2>
+        Realizzazione in Java del <a
+            href='https://anatali.github.io/issLab2026/_static/docs/Protobook.pdf#chapter.6'>GAME OF LIFE DI CONWAY</a>
+
+        <h2>Requirements</h2>
+        Dando per assodato che il gioco <a
+            href="/ConwayLife/Sprint1/conway26Java/userDocs/conway26Java_v0.html">Life</a> è stato realizzato, i
+        requisiti per questa iterazione sono:
+
+        <ol>
+            <li>
+                Il gioco Life deve avere una pagina HTML come dispositivo di I/O.
+            </li>
+            <li>
+                la pagina deve costituire un componente esterno alla applicazione secondo l'architettura riportata in <a
+                    href="https://anatali.github.io/issLab2026/_static/docs/Protobook.pdf#subsection.8.2.3">
+                    IoJavalin
+                </a>
+            </li>
+            <li>
+                il gestore del gioco sarà l’utente che ha aperto per primo (<em>owner</em>) una pagina HTML collegata al
+                gioco.
+                In altre parole, solo la pagina dell’<em>owner</em> avrà pulsanti di comando
+                <pre>START/STOP/CLEAN/EXIT</pre> attivi.
+            </li>
+            <li>
+                la pagina HTML deve essere aggiornata automaticamente con il procedere del gioco;
+            </li>
+            <li>
+                un utente non <em>owner</em> che si collega mentre il gioco è in corso, dovrebbe vedere lo stato attuale
+                del gioco;
+            </li>
+            <li>
+                (<em>opzionalmente</em>) Nel caso di configurazione stabile, rendere evidente che il gioco sta
+                continuando ad evolvere;
+            </li>
+            <lI>
+                il deployment del gioco deve avvenire mediante Docker.
+            </lI>
+        </ol>
+
+
+
+        <h2>Requirement analysis</h2>
+        <p>
+            Per rispettare il requisito di utilizzare una pagina HTML come dispositivo di I/O e riutilizzare il codice
+            scritto in precedenza, è necessario realizzare un componente che implementi la seguente interfaccia
+        </p>
+        <iframe frameborder="0" scrolling="no" style="width:100%; height:200px;" allow="clipboard-write"
+            src="https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2Florenzoarlo%2Fingegneria-dei-sistemi-software-m%2Fblob%2Fmain%2FConwayLife%2FSprint1%2Fconway26Java%2Fsrc%2Fmain%2Fjava%2Fconway%2Fdomain%2FIOutDev.java&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on&maxHeight=150"></iframe>
+
+        <h2>Problem analysis</h2>
+        <p>
+            La struttura con IoJavalin integrato
+        </p>
+        <div class="center">
+            <img src="./img/struttura-ioutdev.png" width="60%" alt="Struttura del progetto">
+        </div>
+        <p>
+            Il codice principale è stato scritto nel seguente componente
+        </p>
+        <iframe frameborder="0" scrolling="no" style="width:100%; height:200px;" allow="clipboard-write"
+            src="https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2Florenzoarlo%2Fingegneria-dei-sistemi-software-m%2Fblob%2Fmain%2FConwayLife%2FSprint3%2Fconway26GuiHtml%2Fsrc%2Fmain%2Fjava%2Fconway%2Fio%2FOutInWs.java&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on&maxHeight=150"></iframe>
+        <p>
+            Tuttavia, voglio far notare che la seguente scelta sarà modificata nella prossima versione in quanto in
+            questo modo si è dipendenti dall'implementazione di IoJavalin.
+
+            La seguente sarà la nuova struttura da implementare
+        <div class="center">
+            <img src="./img/struttura-esternalizzata.png" width="60%" alt="Struttura del progetto">
+        </div>
+        </p>
+
+
+
+        <h2>Test plans</h2>
+
+        <h2>Project</h2>
+        <pre></pre>
+
+        <h2>Testing</h2>
+        <pre></pre>
+
+        <h2>Deployment</h2>
+        <p>
+            Il deployment è effettuato creando un'immagine docker attraverso il file
+        </p>
+        <iframe frameborder="0" scrolling="no" style="width:100%; height:207px;" allow="clipboard-write"
+            src="https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2Florenzoarlo%2Fingegneria-dei-sistemi-software-m%2Fblob%2Fmain%2FConwayLife%2FSprint3%2Fconway26GuiHtml%2FDockerfile&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on&maxHeight=150"></iframe>
+        <p>
+            Successivamente l'immagine viene "eseguita" con il compose file
+        </p>
+        <iframe frameborder="0" scrolling="no" style="width:100%; height:207px;" allow="clipboard-write"
+            src="https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2Florenzoarlo%2Fingegneria-dei-sistemi-software-m%2Fblob%2Fmain%2FConwayLife%2FSprint3%2Fconway26GuiHtml%2Fcompose.yaml&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on&maxHeight=150"></iframe>
+
+        <h2>Maintenance</h2>
+        <pre></pre>
+    </div>
+</body>
+
+</html>

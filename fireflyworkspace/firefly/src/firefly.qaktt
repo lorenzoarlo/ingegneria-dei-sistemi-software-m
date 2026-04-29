@@ -1,0 +1,51 @@
+System firefly
+
+Dispatch cellstate : cellstate(X, Y, COLOR)
+
+Context ctxfirefly ip [ host= "localhost" port=8040]
+Context ctxgrid ip [host="127.0.0.1" port=8050 ]
+
+
+	QActor firefly1 context ctxfirefly {
+		[#  
+			var X = 10
+			var Y = 10	
+		#]
+		State s0 initial {
+			printCurrentMessage color green
+		}
+		Goto flash // go to flash state 
+		State flash{
+			[#var Timer=java.util.Random().nextLong(500L,1000L) #]
+			printCurrentMessage color yellow
+			delayVar Timer
+			
+			//Turn On
+			println("$name|turnOn$Timer") color magenta
+			forward griddisplay -m cellstate:cellstate($X,$Y,1)
+			// forward destinatario -m id:payload 
+			
+			delayVar Timer
+			//Turn Off
+			println("$name|turnOff$Timer") color cyan
+			forward griddisplay -m cellstate:cellstate($X,$Y,0)
+			
+		}
+		Goto flash
+		
+	}
+	
+	ExternalQActor griddisplay context ctxgrid
+	
+//	QActor griddisplaymock context ctxfirefly {
+//		State s0 initial {
+//			printCurrentMessage color blue
+//		}
+//		
+//		Transition t0 whenMsg cellstate -> up
+//		
+//		State up  {
+//			printCurrentMessage color green
+//		}	
+//		Transition t0 whenMsg cellstate -> up
+//	}
