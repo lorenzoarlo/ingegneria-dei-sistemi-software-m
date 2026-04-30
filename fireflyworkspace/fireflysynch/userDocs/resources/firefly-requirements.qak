@@ -1,0 +1,8 @@
+System firefly
+Context ctxfirefly ip [ host="localhost" port=8040 ]
+QActor firefly1 context ctxfirefly {
+
+State s0 initial {
+// impostazione per comportamento di lampeggio
+    }
+}

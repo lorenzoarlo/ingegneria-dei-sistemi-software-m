@@ -4,32 +4,42 @@
 <head>
     <link rel="stylesheet" type="text/css" href="/ingegneria-dei-sistemi-software-m/docs/css/style.css">
 </head>
-<title>firefly</title>
+<title>fireflysynch</title>
 </head>
 
 <body>
     <div id="top">
-        <h1>Firefly</h1>
+        <h1>Firefly synch</h1>
     </div>
 
     <div class="body">
 
         <h2>Introduction</h2>
         <p>
-            Il progetto firefly simula il comportamento di una <em>lucciola</em>.
+
         </p>
 
         <h2>Requirements</h2>
         <p>
-            Definere un modello qak di un sistema firefly che simula il comportamento di una <em>lucciola</em>.
+            Costruire il simulatore di un sistema costituito da 3 lucciole. Inizialemente, le lucciole lampeggiamo
+            ciascuna con una frequenza (costante) propria.
         </p>
+        <ul>
+            <li>
+                Dopo 10 secondi le lucciole devono lampeggiare in modo sincronizzato.
+            </li>
+            <li>
+                Il sistema è dotato anche di un <b>sonar</b>.
+                Quando il sonar rileva un ostacolo a una distanza minore di una distanza prefissata <code>DMIN</code>,
+                le lucciole devono lampeggiare in modo sincronizzato.
+                Quando la distanza dell’ostacolo (ri)supera <code>DMIN</code>, le lucciole tornano a lampeggiare in modo
+                random.
+            </li>
+        </ul>
 
 
         <h2>Requirement analysis</h2>
         <p>
-            Il modello qak del sistema deve avere nome <code>firefly</code> e la lucciola deve essere rappresentata da
-            un <em>actor</em> che
-            lampeggia (accende/spegne) a intervalli di tempo variabili.
         </p>
         <iframe frameborder="0" scrolling="no" style="width:100%; height:200px;" allow="clipboard-write"
             src="https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2Florenzoarlo%2Fingegneria-dei-sistemi-software-m%2Fblob%2Fmain%2Ffireflyworkspace%2Ffirefly%2FuserDocs%2Fresources%2Ffirefly-requirements.qak&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on&maxHeight=150"></iframe>
