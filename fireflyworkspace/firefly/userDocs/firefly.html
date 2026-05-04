@@ -16,25 +16,31 @@
 
         <h2>Introduction</h2>
         <p>
-            Il progetto firefly simula il comportamento di una <em>lucciola</em>.
+            Definire un modello <strong>qak</strong> di un sistema che firefly simula il comportamento di una
+            <em>lucciola</em>.
         </p>
 
         <h2>Requirements</h2>
         <p>
             Definere un modello qak di un sistema firefly che simula il comportamento di una <em>lucciola</em>.
+        <ol>
+            <li>Simulare il comportamento di una lucciola</li>
+            <li>Estendere il modello a più lucciole</li>
+            <li>Utilizzare la griglia <code>griddisplay</code> fornita per visualizzarle</li>
+        </ol>
         </p>
 
 
         <h2>Requirement analysis</h2>
         <p>
             Il modello qak del sistema deve avere nome <code>firefly</code> e la lucciola deve essere rappresentata da
-            un <em>actor</em> che
-            lampeggia (accende/spegne) a intervalli di tempo variabili.
+            un <em>actor</em> che lampeggia (accende e spegne) a intervalli di tempo variabili.
         </p>
         <iframe frameborder="0" scrolling="no" style="width:100%; height:200px;" allow="clipboard-write"
             src="https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2Florenzoarlo%2Fingegneria-dei-sistemi-software-m%2Fblob%2Fmain%2Ffireflyworkspace%2Ffirefly%2FuserDocs%2Fresources%2Ffirefly-requirements.qak&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on&maxHeight=150"></iframe>
         <p>
-            Il comportamento di una lucciola è caratterizzato da un ciclo di accensione e spegnimento, con un timer
+            Il <strong>comportamento</strong> di una lucciola è caratterizzato da un ciclo di accensione e spegnimento,
+            con un timer
             interno che determina l'intervallo di lampeggio.
         </p>
 
@@ -44,18 +50,18 @@
             alterna tra <b>acceso</b> e <b>spento</b> a intervalli di tempo variabili.
         </p>
         <iframe frameborder="0" scrolling="no" style="width:100%; height:200px;" allow="clipboard-write"
-            src="https://github.com/lorenzoarlo/ingegneria-dei-sistemi-software-m/blob/main/fireflyworkspace/firefly/src/firefly.qaktt&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on&maxHeight=150"></iframe>
+            src="https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2Florenzoarlo%2Fingegneria-dei-sistemi-software-m%2Fblob%2Fmain%2Ffireflyworkspace%2Ffirefly%2Fsrc%2Ffirefly.qaktt&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on&maxHeight=150"></iframe>
         <p>
             La ripetizione del ciclo di lampeggio è gestita da una transizione che torna allo stato "flash" dopo un
             certo tempo.
         </p>
         <h2>Test plans</h2>
-        <p>
-
-        </p>
-        <h2>Project</h2>
         <pre></pre>
-
+        <h2>Project</h2>
+        <p>
+            Al fine di visualizzare il comportamento di una lucciola, è stata utilizzata la griglia
+            <code>griddisplay</code> fornita.
+        </p>
         <h2>Testing</h2>
         <pre></pre>
 
