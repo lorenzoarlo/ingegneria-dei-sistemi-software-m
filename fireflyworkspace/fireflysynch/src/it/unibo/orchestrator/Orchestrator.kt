@@ -29,6 +29,9 @@ class Orchestrator ( name: String, scope: CoroutineScope, isconfined: Boolean=fa
 	override fun getBody() : (ActorBasicFsm.() -> Unit){
 		//val interruptedStateTransitions = mutableListOf<Transition>()
 		//IF actor.withobj !== null val actor.withobj.name� = actor.withobj.method�ENDIF
+		 
+			   val DMIN = 50 
+			   var Synced = false
 		return { //this:ActionBasciFsm
 				state("s0") { //this:State
 					action { //it:State
@@ -41,19 +44,39 @@ class Orchestrator ( name: String, scope: CoroutineScope, isconfined: Boolean=fa
 					//After Lenzi Aug2002
 					sysaction { //it:State
 					}	 	 
-					 transition( edgeName="goto",targetState="waitAndSync", cond=doswitch() )
+					 transition( edgeName="goto",targetState="wait", cond=doswitch() )
 				}	 
-				state("waitAndSync") { //this:State
+				state("wait") { //this:State
 					action { //it:State
-						delay(8000) 
-						 val SyncTimer = 1000L  
-						CommUtils.outred("$name | Invia sync")
-						emit("sync", "sync($SyncTimer)" ) 
 						//genTimer( actor, state )
 					}
 					//After Lenzi Aug2002
 					sysaction { //it:State
 					}	 	 
+					 transition(edgeName="t00",targetState="handleSonar",cond=whenEvent("sonardata"))
+				}	 
+				state("handleSonar") { //this:State
+					action { //it:State
+						if( checkMsgContent( Term.createTerm("distance(D)"), Term.createTerm("distance(D)"), 
+						                        currentMsg.msgContent()) ) { //set msgArgList
+								 val D = payloadArg(0).toInt()  
+								if(  D < DMIN && !Synced  
+								 ){CommUtils.outred("$name | Distanza $D < $DMIN. Invio SYNC!")
+								 Synced = true  
+								emit("sync", "sync(1000)" ) 
+								}
+								if(  D >= DMIN && Synced  
+								 ){CommUtils.outgreen("$name | Distanza $D >= $DMIN. Invio UNSYNC!")
+								 Synced = false  
+								emit("unsync", "unsync(ok)" ) 
+								}
+						}
+						//genTimer( actor, state )
+					}
+					//After Lenzi Aug2002
+					sysaction { //it:State
+					}	 	 
+					 transition( edgeName="goto",targetState="wait", cond=doswitch() )
 				}	 
 			}
 		}

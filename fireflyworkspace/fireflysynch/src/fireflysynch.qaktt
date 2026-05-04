@@ -1,0 +1,75 @@
+System fireflysynch
+
+Dispatch cellstate  : cellstate(X,Y,COLOR) "commute cell state on grid"
+Event sync : sync(TIMER) "shared frequency from orchestrator"
+
+Context ctxfireflysynch ip [ host= "localhost" port=8040 ]
+Context ctxgrid         ip [ host= "127.0.0.1" port=8050 ]
+
+ExternalQActor griddisplay context ctxgrid
+
+QActor orchestrator context ctxfireflysynch {
+	State s0 initial {
+		[# clearlog("./logs/app_firefly.log") #]
+
+		create firefly _"1"
+		create firefly _"2"
+		create firefly _"3"
+	}
+	Goto waitAndSync
+	
+	State waitAndSync {
+		delay 8000 
+		
+		[# val SyncTimer = 1000L #]
+		println("$name | Invia sync") color red
+		
+		emit sync : sync($SyncTimer)
+	}
+}
+
+QActor firefly context ctxfireflysynch dynamicOnly {
+	[# 
+	   var X = 0 
+	   var Y = 0 
+	   var Timer = 500L
+	   
+	   fun setCellCoords( ) { 
+	   	   val coordY = name.replace("firefly_","") 
+	   	   Y = coordY.toInt() 
+	   }
+	#] 
+	
+	State s0 initial {
+		[# setCellCoords( ) #]
+		[# Timer = java.util.Random().nextLong(1000L, 2000L ) #]  
+	}
+	Goto turnOn
+	
+	State turnOn {
+		forward griddisplay -m cellstate : cellstate($X, $Y, 1) 
+	}
+	Transition t1 
+		whenTime 500   -> turnOff          
+		whenEvent sync -> handlesync
+
+	State turnOff {
+		forward griddisplay -m cellstate : cellstate($X, $Y, 0)
+	}
+	Transition t2
+		whenTimeVar Timer -> turnOn        
+		whenEvent sync    -> handlesync
+	
+
+	State handlesync{
+		onMsg( sync : sync(A) ) { 
+			[# 
+			   val t = payloadArg(0) 
+			   val T = t.toLong() 
+			   Timer = T 
+			#] 
+			println("$name | Ricevuta frequenza $T") color green 
+		}
+	}
+	Goto turnOn 
+}

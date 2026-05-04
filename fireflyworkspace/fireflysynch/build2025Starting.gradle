@@ -154,9 +154,9 @@ task dovesiamo {
 
 distributions {
     main {
-        distributionBaseName = 'fireflysynch'
+        distributionBaseName = 'fireflysynch_sonar'
         contents { 
-             from './fireflysynch.pl'
+             from './fireflysynch_sonar.pl'
              from './sysRules.pl'
              from './facadeConfig.json'
         }

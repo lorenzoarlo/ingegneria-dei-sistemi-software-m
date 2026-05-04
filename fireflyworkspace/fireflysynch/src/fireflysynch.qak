@@ -1,14 +1,48 @@
-System fireflysynch
+System fireflysynch_sonar
 
-Dispatch cellstate  : cellstate(X,Y,COLOR) "commute cell state on grid"
-Event sync : sync(TIMER) "shared frequency from orchestrator"
+Dispatch cellstate : cellstate(X,Y,COLOR) "commute cell state on grid"
+Event sonardata    : distance(D)          "emitted by sonar"
+Event sync         : sync(TIMER)          "shared frequency from orchestrator"
+Event unsync       : unsync(CMD)          "cancel sync and return to random"
 
 Context ctxfireflysynch ip [ host= "localhost" port=8040 ]
-Context ctxgrid         ip [ host= "127.0.0.1" port=8050 ]
+Context ctxgrid    ip [ host= "127.0.0.1" port=8050 ]
 
 ExternalQActor griddisplay context ctxgrid
 
+QActor sonarmock context ctxfireflysynch {
+	[#
+	   var DCLOSE = 20
+	   var DFAR   = 100
+	#]
+	
+	State s0 initial {
+		println("$name | Avvio sonar mock...") color cyan
+		delay 1000 
+	}
+	Goto work
+	
+	State work {
+
+		println("$name | Nessun ostacolo per 3 secondi...") color cyan
+		emit sonardata : distance($DFAR)
+		delay 3000
+		
+		
+		println("$name | Ostacolo rilevato per 5 secondi!") color cyan
+		emit sonardata : distance($DCLOSE)
+		delay 5000
+	}
+	Goto work 
+}
+
+
 QActor orchestrator context ctxfireflysynch {
+	[# 
+	   val DMIN = 50 
+	   var Synced = false
+	#]
+	
 	State s0 initial {
 		[# clearlog("./logs/app_firefly.log") #]
 
@@ -16,16 +50,31 @@ QActor orchestrator context ctxfireflysynch {
 		create firefly _"2"
 		create firefly _"3"
 	}
-	Goto waitAndSync
+	Goto wait
 	
-	State waitAndSync {
-		delay 8000 
-		
-		[# val SyncTimer = 1000L #]
-		println("$name | Invia sync") color red
-		
-		emit sync : sync($SyncTimer)
+	State wait {
 	}
+	Transition t0
+		whenEvent sonardata -> handleSonar
+		
+	State handleSonar {
+		onMsg( sonardata : distance(D) ) {
+			[# val D = payloadArg(0).toInt() #]
+			
+			if [# D < DMIN && !Synced #] {
+				println("$name | Distanza $D < $DMIN. Invio SYNC!") color red
+				[# Synced = true #]
+				emit sync : sync(1000)
+			}
+			
+			if [# D >= DMIN && Synced #] {
+				println("$name | Distanza $D >= $DMIN. Invio UNSYNC!") color green
+				[# Synced = false #]
+				emit unsync : unsync(ok)
+			}
+		}
+	}
+	Goto wait
 }
 
 QActor firefly context ctxfireflysynch dynamicOnly {
@@ -42,7 +91,7 @@ QActor firefly context ctxfireflysynch dynamicOnly {
 	
 	State s0 initial {
 		[# setCellCoords( ) #]
-		[# Timer = java.util.Random().nextLong(1000L, 2000L ) #]  
+		[# Timer = java.util.Random().nextLong(500L, 2000L) #]  
 	}
 	Goto turnOn
 	
@@ -50,26 +99,32 @@ QActor firefly context ctxfireflysynch dynamicOnly {
 		forward griddisplay -m cellstate : cellstate($X, $Y, 1) 
 	}
 	Transition t1 
-		whenTime 500   -> turnOff          
-		whenEvent sync -> handlesync
+		whenTimeVar Timer  -> turnOff          
+		whenEvent sync     -> handlesync
+		whenEvent unsync   -> handleunsync
 
 	State turnOff {
 		forward griddisplay -m cellstate : cellstate($X, $Y, 0)
 	}
 	Transition t2
-		whenTimeVar Timer -> turnOn        
-		whenEvent sync    -> handlesync
+		whenTimeVar Timer  -> turnOn        
+		whenEvent sync     -> handlesync
+		whenEvent unsync   -> handleunsync
 	
-
 	State handlesync{
 		onMsg( sync : sync(A) ) { 
 			[# 
-			   val t = payloadArg(0) 
-			   val T = t.toLong() 
+			   val T = payloadArg(0).toLong() 
 			   Timer = T 
 			#] 
-			println("$name | Ricevuta frequenza $T") color green 
+			println("$name | Ricevuta frequenza fissa $T") color green 
 		}
 	}
 	Goto turnOn 
+	
+	State handleunsync {
+		println("$name | Sincronizzazione annullata") color yellow
+		[# Timer = java.util.Random().nextLong(500L, 2000L) #]
+	}
+	Goto turnOn
 }
