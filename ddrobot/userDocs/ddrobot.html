@@ -40,7 +40,32 @@
 
         <h2>Requirement analysis</h2>
         <p>
+            Leggendo i requisiti, è possibile identificare le seguenti entità:
+        <ul>
+            <li>
+                Il <strong>DDR</strong> deve essere modellato come <emph>actor</emph>, in quanto anch'esso
+                caratterizzato da un comportamento e da un'indipendenza rispetto alle altre entità
+                Tra le informazioni che deve memorizzare, c'è:
+                <ul>
+                    <li>la posizione attuale, in quanto si muove nello spazio</li>
+                    <li>la posizione <code>HOME</code>, in quanto deve essere in grado di fermarsi una volta ritornato
+                    </li>
+                    <li>se al momento sta ruotando, in quanto deve continuare a farlo fino al cambiamento dello stato
+                        esterno</li>
+                </ul>
+                Inoltre, deve essere caratterizzato dal seguente comportamento:
+                <ul>
+                    <li>deve essere in grado di <strong>muoversi</strong> e <strong>fermarsi</strong></li>
+                    <li>deve essere in grado di <strong>ruotare</strong></li>
+                </ul>
+            </li>
+            <li>
+                Il <strong>Radar</strong> deve essere modellato come <emph>actor</emph>, in quanto anch'esso
+                caratterizzato da un comportamento e da un'indipendenza rispetto alle altre entità
+                Il Radar deve essere in grado di comunicare con il DDR se rileva un intruso
+            </li>
 
+        </ul>
         </p>
         <!-- <iframe frameborder="0" scrolling="no" style="width:100%; height:200px;" allow="clipboard-write"
             src="https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2Florenzoarlo%2Fingegneria-dei-sistemi-software-m%2Fblob%2Fmain%2Ffireflyworkspace%2Ffirefly%2FuserDocs%2Fresources%2Ffirefly-requirements.qak&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on&maxHeight=150"></iframe> -->

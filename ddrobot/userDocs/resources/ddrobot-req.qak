@@ -1,0 +1,27 @@
+System ddrobot_system
+
+Context ctxddrobot ip [host="localhost" port=8040]
+
+Dispatch startCmd : start(V)        
+Dispatch distance : distance(D)    
+
+QActor ddrobot context ctxddrobot {
+    [#
+        val DMIN = 30
+        var IsMoving = false
+        var Rotating = false
+        var StoppedByIntruder = false
+    #]
+
+    State s0 initial {
+        println("$name | INIT - Setting up system") color blue
+    }
+
+}
+
+
+QActor mockradar context ctxddrobot {
+    State s0 initial {
+
+    }
+}
